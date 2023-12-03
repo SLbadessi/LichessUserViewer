@@ -1,0 +1,45 @@
+
+{% block content %}
+    <div class="site-header-logo">
+        <h1 class="text-center">
+            {{username}}
+        </h1>
+    </div>
+
+    <div class="row p-4">
+        <div class="card m-auto" style="width: 90%;" data-aos="fade-left">
+        	<h2>Total games played :{{total}}</h2>
+        	<h2>Game Results: </h2>
+            <div id="chart1"></div>
+        </div>   
+    </div>
+     <div class="row p-4">
+        <div class="card m-auto" style="width: 90%;" data-aos="fade-left">
+        	<h2>Type of games: </h2>
+            <div id="chart3"></div>
+        </div>   
+    </div>
+
+    <div class="row p-4">
+        <div class="card m-auto" style="width: 90%;" data-aos="fade-left">
+        	<h2>Detailed results: </h2>
+            <div id="chart2"></div>
+        </div>   
+    </div>
+    <!-- plotly CDN -->
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript">
+        var graphs1 = {{ graph1JSON | safe}};
+        Plotly.plot("chart1", graphs1,{});
+
+        var graphs2 = {{ graph2JSON | safe}};
+        Plotly.plot("chart2", graphs2,{});
+
+        var graphs3 = {{ graph3JSON | safe}};
+        Plotly.plot("chart3", graphs3,{});
+
+
+    </script>
+
+{% endblock %}
